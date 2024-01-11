@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 
+//allow JSON to be parsed in order to be used by express
 app.use(express.json());
 
 const db = require("./models");
 
 ////Routers
-////create endpoint "localhost:3001/post"
+////create endpoint "localhost:3001/posts"
 const postRouter = require("./routes/Posts");
 app.use("/posts", postRouter);
 
