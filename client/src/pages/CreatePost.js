@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 function CreatePost() {
   const initialValues = {
@@ -7,6 +8,12 @@ function CreatePost() {
     postText: "",
     username: "",
   };
+
+  const validationSchema = Yup.object().shape({
+    title: Yup.string().required(),
+    postText: Yup.string().required(),
+    username: Yup.string().min(3).max(15).required(),
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -18,7 +25,7 @@ function CreatePost() {
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
-        validationSchema={0}
+        validationSchema={validationSchema}
       >
         <Form className="formContainer">
           <label>Title: </label>
