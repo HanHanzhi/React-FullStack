@@ -11,7 +11,13 @@ function App() {
       setListOfPosts(response.data);
     });
   }, []);
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      {listOfPosts.map((value, key) => {
+        return <div>{value.title}</div>;
+      })}
+    </div>
+  );
 }
 
 export default App;
