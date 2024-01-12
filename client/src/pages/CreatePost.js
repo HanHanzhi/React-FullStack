@@ -20,6 +20,7 @@ function CreatePost() {
             name="username"
             placeholder="(EX..John123)"
           />
+          <button type="submit">Create Post</button>
         </Form>
       </Formik>
     </div>
