@@ -3,9 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 function CreatePost() {
   return (
-    <div>
+    <div className="createPostPage">
       <Formik initialValues={0} onSubmit={0} validationSchema={0}>
-        <Form>
+        <Form className="formContainer">
           <label>Title: </label>
           <Field id="inputCreatePost" name="title" placeholder="(EX..Title)" />
           <label>Post: </label>
