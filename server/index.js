@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+//Add CORS so that it accept request coming from the same origin (whitelist our own computer)
+var cors = require("cors");
+app.use(cors());
 
 //allow JSON to be parsed in order to be used by express
 app.use(express.json());
