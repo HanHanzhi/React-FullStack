@@ -2,9 +2,24 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 function CreatePost() {
+  const initialValues = {
+    title: "",
+    postText: "",
+    username: "",
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+  //formik automatically passess the data as a parameter to this function
+
   return (
     <div className="createPostPage">
-      <Formik initialValues={0} onSubmit={0} validationSchema={0}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={0}
+      >
         <Form className="formContainer">
           <label>Title: </label>
           <Field id="inputCreatePost" name="title" placeholder="(EX..Title)" />
