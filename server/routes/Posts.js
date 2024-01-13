@@ -21,6 +21,7 @@ router.post("/123", async (req, res) => {
     //this body data should have the same format as our
     //Post.js format in
     await Posts.create(post);
+    //sequelize is called here to create and insert that object into db
     res.json(post);
   } catch (error) {
     res.send(error);
