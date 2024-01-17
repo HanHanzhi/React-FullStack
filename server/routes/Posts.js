@@ -14,6 +14,12 @@ router.get("/", async (req, res) => {
   res.json(listOfPosts);
 });
 
+router.get("/byId/:id", async (req, res) => {
+  const id = req.params.id;
+  const post = await Posts.findByPk(id);
+  res.json(post);
+});
+
 router.post("/123", async (req, res) => {
   try {
     //receive a FORM from frontend in JSON
