@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Posts = sequelize.define("Posts", {
+    onDelete: "cascade",
     title: {
       type: DataTypes.STRING,
       allowNull: false,
