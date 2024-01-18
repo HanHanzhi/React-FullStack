@@ -10,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Users.associate = (models) => {
-    Users.hasMany(models.Posts, {
-      onDelete: "cascade", //if we delete a post, it will delete all the comments related to that post
-    });
-  };
+  //   Users.associate = (models) => {
+  //     Users.hasMany(models.Posts, {
+  //       onDelete: "cascade", //if we delete a post, it will delete all the comments related to that post
+  //     });
+  //   };
   return Users;
 };
