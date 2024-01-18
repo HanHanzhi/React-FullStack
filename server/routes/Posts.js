@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/byId/:id", async (req, res) => {
+  //":parameterName" value is inside req.params.parameterName
   const id = req.params.id;
   const post = await Posts.findByPk(id);
   res.json(post);
