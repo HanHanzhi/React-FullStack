@@ -13,10 +13,10 @@ router.post("/", async (req, res) => {
         password: hash,
       });
       //sending a response in JSON
-      res.json(req.body);
+      return res.json(req.body);
     });
   } catch (error) {
-    res.send(error);
+    return res.send(error);
   }
 });
 
@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
       return res.json("Logged in Successfully");
     });
   } catch (error) {
-    res.send(error);
+    return res.send(error);
   }
 });
 
