@@ -13,6 +13,7 @@ function Login() {
       })
       .then((response) => {
         console.log(response.data);
+        alert(JSON.stringify(response.data));
       });
   };
   return (
