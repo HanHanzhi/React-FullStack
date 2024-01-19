@@ -13,6 +13,8 @@ router.post("/", validateToken, async (req, res) => {
   try {
     //receive a FORM from frontend in JSON
     const comment = req.body;
+    const username = req.user.username;
+    comment.username = username;
     //this body data should have the same format as our
     //Post.js format in
     await Comments.create(comment);
