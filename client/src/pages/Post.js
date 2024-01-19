@@ -15,9 +15,18 @@ function Post() {
   return (
     <div className="postPage">
       <div className="leftSide">
-        <div>{postObject.username}</div>
-        <div>{postObject.postText}</div>
-        <div>{postObject.title}</div>
+        <div className="post" id="individual">
+          <div className="title">{postObject.title}</div>
+          <div className="body">{postObject.postText}</div>
+          <div className="footer">{postObject.username}</div>
+        </div>
+      </div>
+      <div className="rightSide">
+        <div className="addCommentContainer">
+          <input type="text" placeholder="Comment..." />
+          <button>Add Comments</button>
+        </div>
+        <div className="listOfComments"></div>
       </div>
     </div>
   );
