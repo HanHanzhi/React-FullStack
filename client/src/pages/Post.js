@@ -5,8 +5,9 @@ import axios from "axios";
 function Post() {
   let { id } = useParams(); //useParams hook allow us to get the value that was passed in URL
   //the "id" variable name here must match the :id name in the route
-  const [postObject, setPostObject] = useState({});
-  const [comments, setComments] = useState([]);
+  const [postObject, setPostObject] = useState({}); //object
+  const [comments, setComments] = useState([]); //array
+  const [newComment, setNewComment] = useState(""); //string
   useEffect(() => {
     axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
@@ -15,6 +16,17 @@ function Post() {
       setComments(response.data);
     });
   }, []);
+
+  const addComment = () => {
+    axios
+      .post(`http://localhost:3001/comments`, {
+        commentBody: newComment,
+        PostId: id,
+      })
+      .then(() => {
+        console.log("Comment added");
+      });
+  };
 
   return (
     <div className="postPage">
@@ -27,8 +39,14 @@ function Post() {
       </div>
       <div className="rightSide">
         <div className="addCommentContainer">
-          <input type="text" placeholder="Comment..." />
-          <button>Add Comments</button>
+          <input
+            type="text"
+            placeholder="Comment..."
+            onChange={(event) => {
+              setNewComment(event.target.value);
+            }}
+          />
+          <button onClick={addComment}>Add Comments</button>
         </div>
         <div className="listOfComments">
           {comments.map((comment, key) => {
