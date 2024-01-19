@@ -24,7 +24,9 @@ function Post() {
         PostId: id,
       })
       .then(() => {
-        console.log("Comment added");
+        const commentToAdd = { commentBody: newComment };
+        setComments([...comments, commentToAdd]);
+        setNewComment("");
       });
   };
 
@@ -42,6 +44,7 @@ function Post() {
           <input
             type="text"
             placeholder="Comment..."
+            value={newComment}
             onChange={(event) => {
               setNewComment(event.target.value);
             }}
