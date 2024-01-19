@@ -12,8 +12,11 @@ function Login() {
         password: password,
       })
       .then((response) => {
-        console.log(response.data);
-        alert(JSON.stringify(response.data));
+        if (response.data.error) {
+          alert(response.data.error);
+        } else {
+          sessionStorage.setItem("accessToken", response.data);
+        }
       });
   };
   return (
