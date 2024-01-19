@@ -35,4 +35,38 @@ router.post("/123", async (req, res) => {
   }
 });
 
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const post = await Posts.findByPk(id);
+
+//     if (!post) {
+//       return res.status(404).json({ error: "Post not found" });
+//     }
+
+//     await post.destroy();
+//     res.json({ message: "Post deleted successfully" });
+//   } catch (error) {
+//     res.status(500).send(error.message);
+//   }
+// });
+
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const post = await Posts.findByPk(id);
+
+//     if (!post) {
+//       return res.status(404).json({ error: "Post not found" });
+//     }
+
+//     // Update post with new data from the request body
+//     await post.update(req.body);
+
+//     res.json({ message: "Post updated successfully", updatedPost: post });
+//   } catch (error) {
+//     res.status(500).send(error.message);
+//   }
+// });
+
 module.exports = router;
