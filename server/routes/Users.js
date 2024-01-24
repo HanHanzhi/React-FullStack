@@ -6,19 +6,25 @@ const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
-  try {
-    //receive a FORM from frontend in JSON
-    const { username, password } = req.body; //{names} in bracket should match the property name in req.body
-    bcrypt.hash(password, 10).then((hash) => {
-      Users.create({
-        username: username,
-        password: hash,
+  const { username, password } = req.body; //{names} in bracket should match the property name in req.body
+  const user = await Users.findOne({ where: { username: username } });
+  if (!user) {
+    try {
+      //receive a FORM from frontend in JSON
+      const { username, password } = req.body; //{names} in bracket should match the property name in req.body
+      bcrypt.hash(password, 10).then((hash) => {
+        Users.create({
+          username: username,
+          password: hash,
+        });
+        //sending a response in JSON
+        return res.json(req.body);
       });
-      //sending a response in JSON
-      return res.json(req.body);
-    });
-  } catch (error) {
-    return res.send(error);
+    } catch (error) {
+      return res.send(error);
+    }
+  } else {
+    return res.json("username already existed");
   }
 });
 
