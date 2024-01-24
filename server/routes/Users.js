@@ -48,5 +48,19 @@ router.post("/login", async (req, res) => {
     return res.send(error);
   }
 });
+router.delete("/delete", async (req, res) => {
+  const { username, password } = req.body; //{names} in bracket should match the property name in req.body
+  const user = await Users.findOne({ where: { username: username } });
+  try {
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    await user.destroy();
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 module.exports = router;
