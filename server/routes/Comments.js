@@ -19,7 +19,7 @@ router.post("/", validateToken, async (req, res) => {
     //Post.js format in
     await Comments.create(comment);
     //sequelize is called here to create and insert that object into db
-    return res.json(post);
+    return res.json(comment);
   } catch (error) {
     return res.send(error);
   }
