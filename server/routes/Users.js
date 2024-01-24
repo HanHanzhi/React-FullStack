@@ -63,4 +63,27 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
+router.put("/edit", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await Users.findOne({ where: { username: username } });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Update post with new data from the request body
+    await bcrypt.hash(password, 10).then((hash) => {
+      user.update({
+        username: username,
+        password: hash,
+      });
+      //sending a response in JSON
+      res.json({ message: "User updated successfully" });
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 module.exports = router;
