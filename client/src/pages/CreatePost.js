@@ -19,8 +19,12 @@ function CreatePost() {
 
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/posts/123", data).then((response) => {
-      console.log(response.data);
-      navigate("/");
+      if (response.data.error) {
+        alert("Not logged in");
+      } else {
+        console.log(response.data);
+        navigate("/");
+      }
     });
   };
   //formik automatically passess the data as a parameter to this function

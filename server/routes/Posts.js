@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Posts } = require("../models");
+const { validateToken } = require("../middlewares/AuthMiddleware");
 /*The use of curly braces {} in the const { Posts } statement is known as object destructuring 
 in JavaScript. This syntax is commonly used when importing modules or requiring specific properties 
 from an object.*/
@@ -21,7 +22,7 @@ router.get("/byId/:id", async (req, res) => {
   res.json(post);
 });
 
-router.post("/123", async (req, res) => {
+router.post("/123", validateToken, async (req, res) => {
   try {
     //receive a FORM from frontend in JSON
     const post = req.body;
@@ -29,9 +30,9 @@ router.post("/123", async (req, res) => {
     //Post.js format in
     await Posts.create(post);
     //sequelize is called here to create and insert that object into db
-    res.json(post);
+    return res.json(post);
   } catch (error) {
-    res.send(error);
+    return res.send(error);
   }
 });
 
